@@ -6,6 +6,9 @@ const app = express();
 
 const port = 3000;
 
+// middleware - habilitamos usar el formato json
+app.use(express.json());
+
 // endpoints
 app.get('/', (req, res) => {
     res.send("hola bienvenido a mi API");
@@ -31,6 +34,15 @@ app.get('/register', (req, res) => {
 
 app.get('*', (req, res) => {
     res.send("otros");
+});
+
+app.post('/register', (req, res) => {
+   /*  let nombre = req.body.nombre;
+    let edad = req.body.edad;
+    let email = req.body.email; */
+    let usuario = req.body;
+    
+    res.send(`Hola ${usuario.nombre} se que tu email es ${usuario.email} y tienes ${usuario.edad}`);
 });
 
 app.listen(port, () => console.log(`Escuchando por puerto ${port}...`));
